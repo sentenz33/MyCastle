@@ -1,0 +1,19 @@
+def f(L, S, Lcash, Scash, x):
+    if (S == 12) and x % 2 == 0:
+        return 0
+    if Lcash < 0:
+        return 0
+    if Scash < 0:
+        return 0
+    if (Lcash >= 70 or L == 12) and x % 2 != 0:
+        return 1
+    elif x % 2 == 0:
+        return f(L + 1, S, Lcash - 2, Scash, x + 1) or f(L, S, Lcash + L * 2, Scash, x + 1)
+    else:
+        return f(L, S + 1, Lcash, Scash - 2, x + 1) and f(L, S, Lcash, Scash + S * 2, x + 1)
+
+
+for i in range(0, 69):
+    if f(1, 1, i, 35, 0):
+        print(i)
+        break
